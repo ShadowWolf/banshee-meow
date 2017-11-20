@@ -7,6 +7,9 @@
   "author": "Bryan <shadowwolf007@gmail.com>",
   "license": "NONE",
   "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.16.2"
   },
