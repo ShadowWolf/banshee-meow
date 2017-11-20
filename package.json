@@ -1,0 +1,13 @@
+{
+  "name": "banshee_meow",
+  "version": "1.0.0",
+  "description": "RSVP Site for Wolf Wedding",
+  "main": "index.js",
+  "repository": "https://github.com/ShadowWolf/banshee-meow.git",
+  "author": "Bryan <shadowwolf007@gmail.com>",
+  "license": "NONE",
+  "private": true,
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
