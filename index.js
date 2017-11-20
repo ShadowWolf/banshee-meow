@@ -4,6 +4,6 @@ const app = express();
 
 app.use(express.static('public'));
 
-const portNumber = 1500;
+const portNumber = process.env.PORT || 1500;
 
-app.listen(portNumber, () => console.log('Banshee Meow listening on port ' + portNumber))
+app.listen(portNumber, () => console.log('Banshee Meow listening on port ' + portNumber + ' PORT environment variable: ' + process.env.PORT))
