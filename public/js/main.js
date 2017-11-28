@@ -8,11 +8,12 @@ $(window).scroll(function() {
 });
 
 /* ---- nav smooth scroll ---- */
-$(document).ready(function() {
+$(function() {
+    var smoothScrollValue = 750;
     $('.scroll-link').on('click', function(event){
         event.preventDefault();
         var sectionID = $(this).attr("data-id");
-        scrollToID('#' + sectionID, 750);
+        scrollToID('#' + sectionID, smoothScrollValue);
     });
     $('.scroll-top').on('click', function(event) {
         event.preventDefault();
@@ -22,8 +23,8 @@ $(document).ready(function() {
 
 /* ---- navbar offset ---- */
 function scrollToID(id, speed){
-    var offSet = 90;
-    var targetOffset = $(id).offset().top - offSet;
+    var offset = 0;
+    var targetOffset = $(id).offset().top - offset;
     $('html,body').animate({scrollTop:targetOffset}, speed);
 }
 
@@ -57,7 +58,7 @@ $(".navbar-toggle").click(function(){
 
 /* ---- close mobile nav on click ---- */
 $(document).on('click','.navbar-collapse.in',function(e) {
-    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+    if( $(e.target) === 'a' && $(e.target).attr('class') !== 'dropdown-toggle' ) {
         $(this).collapse('hide');
     }
 });
@@ -78,20 +79,21 @@ function submitForm() {
     var email = $("#email").val();
     var msg_subject = $("#msg_subject").val();
     var message = $("#message").val();
-    $.ajax({
-        type: "POST",
-        url: "php/contact.php",
-        data: "name=" + name + "&email=" + email + "&msg_subject=" +
-            msg_subject + "&message=" + message,
-        success: function(text) {
-            if (text == "success") {
-                formSuccess();
-            } else {
-                formError();
-                submitMSG(false, text);
-            }
-        }
-    });
+    alert('El Wompo');
+    // $.ajax({
+    //     type: "POST",
+    //     url: "php/contact.php",
+    //     data: "name=" + name + "&email=" + email + "&msg_subject=" +
+    //         msg_subject + "&message=" + message,
+    //     success: function(text) {
+    //         if (text == "success") {
+    //             formSuccess();
+    //         } else {
+    //             formError();
+    //             submitMSG(false, text);
+    //         }
+    //     }
+    // });
 }
 function formSuccess() {
     $("#contactForm")[0].reset();
@@ -114,7 +116,7 @@ function submitMSG(valid, msg) {
 }
 
 /* ---- animations ---- */
-if (typeof sr == 'undefined') {
+if (typeof sr === 'undefined') {
     window.sr = ScrollReveal({
         duration: 1900,
         delay: 50
