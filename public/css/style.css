@@ -35,7 +35,7 @@ Author:Denis Samardjiev
 body {
     font-family: 'Playfair Display';
     font-size: 18px;
-    color: #b2b2b2;
+    color: #848484;
     height: 100%;
 }
 
@@ -44,7 +44,7 @@ html {
 }
 
 a {
-    color: #b5b5b5;
+    color: #898989;
     -webkit-transition: all 0.5s ease 0s;
     -moz-transition: all 0.5s ease 0s;
     -o-transition: all 0.5s ease 0s;
@@ -99,7 +99,7 @@ iframe {
 }
 
 .text-light {
-    color: #ccc;
+    color: #9a9a9a;
 }
 
 .lead-xl {
