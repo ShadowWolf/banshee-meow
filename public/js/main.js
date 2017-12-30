@@ -118,7 +118,7 @@ function submitMSG(valid, msg) {
 /* ---- animations ---- */
 if (typeof sr === 'undefined') {
     window.sr = ScrollReveal({
-        duration: 1900,
+        duration: 1000,
         delay: 50
     });
 }
