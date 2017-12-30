@@ -130,6 +130,13 @@ iframe {
     margin: 0;
 }
 
+.section-title-padding {
+    display: block;
+    margin: 25px 0 35px 0;
+    width: 45px;
+    height: 1px;
+}
+
 .section-divider {
     display: block;
     margin: 25px 0 35px 0;
