@@ -1,10 +1,10 @@
 /* ---- navbar scroll ---- */
 $(window).scroll(function() {
-	if ($(document).scrollTop() > 50) {
-	   $('.navbar-default').addClass('navbar-scroll');
-	} else {
-	   $('.navbar-default').removeClass('navbar-scroll');
-	}
+    if ($(document).scrollTop() > 50) {
+       $('.navbar-default').addClass('navbar-scroll');
+    } else {
+       $('.navbar-default').removeClass('navbar-scroll');
+    }
 });
 
 /* ---- nav smooth scroll ---- */
@@ -17,7 +17,7 @@ $(function() {
     });
     $('.scroll-top').on('click', function(event) {
         event.preventDefault();
-        $('html, body').animate({scrollTop:0}, 1200);       
+        $('html, body').animate({scrollTop:0}, 1200);
     });
 });
 
@@ -43,12 +43,12 @@ $('#gallery').magnificPopup({
 
 /* ---- youtube, vimeo, map popup ---- */
 $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-	disableOn: 700,
-	type: 'iframe',
-	mainClass: 'mfp-fade',
-	removalDelay: 160,
-	preloader: false,
-	fixedContentPos: false
+    disableOn: 700,
+    type: 'iframe',
+    mainClass: 'mfp-fade',
+    removalDelay: 160,
+    preloader: false,
+    fixedContentPos: false
 });
 
 /* ---- mobile menu color on click ---- */
