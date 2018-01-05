@@ -603,7 +603,7 @@ iframe {
 }
 
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
-    color: #ecbf87;
+    color: #a6d8bd;
     background-color: transparent;
 }
 
@@ -613,8 +613,8 @@ iframe {
 
 .navbar-nav > li.nav-btn a:hover {
     color: #a6d8bd;
-    background-color: #ca9e68;
-    border-color: #ca9e68;
+    background-color: #abdac0;
+    border-color: #cfd1cc;
 }
 
 .navbar-scroll {
@@ -632,17 +632,17 @@ iframe {
 }
 
 .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
-    background-color: #ecbf87;
+    background-color: #abdac0;
 }
 
 .navbar-default .navbar-toggle {
-    border-color: #ecbf87;
+    border-color: #abdac0;
 }
 
 .navbar-toggle {
     margin-top: 23px;
     margin-bottom: 23px;
-    background-color: #ecbf87;
+    background-color: #abdac0;
     border-radius: 0;
 }
 
