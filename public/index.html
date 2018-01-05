@@ -20,6 +20,7 @@
 	<!-- Preloader -->
 	<script src="js/royal_preloader.min.js"></script>
 	<script>
+        "use strict";
 		Royal_Preloader.config({
 		    mode:           'number',
 		    showProgress:   false,
@@ -53,7 +54,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand scroll-link" href="#home" data-id="home">08/18/2018</a>
+						<a class="navbar-brand scroll-link" href="#home" data-id="home">Bryan &amp; Melissa are getting married</a>
 					</div>
 
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -147,6 +148,23 @@
 	</header>
 	<!-- End Header -->
 
+    <!--<div id="announcement" class="">-->
+        <!--<div class="center-vertically-holder">-->
+            <!--<div class="center-vertically">-->
+                <!--<h1 class="header-title color-link">-->
+
+                <!--</h1>-->
+                <!--<span class="section-divider section-divider-center section-divider-transparent mt20 mb20"></span>-->
+                <!--<p class="mb20">On August 18th, 2018 in St Paul, Minnesota</p>-->
+                <!--<button class="btn btn-lg btn-primary" disabled="disabled" data-toggle="modal" data-target="#rsvp-modal">RSVP Here Later</button>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="scroll-down hidden-xs mb30">-->
+            <!--<a href="#story" data-id="story" class="btn scroll-link"><span class="ion-ios-arrow-down scroll-indicator"></span></a>-->
+        <!--</div>-->
+    <!--</div>-->
+
 	<!-- Begin Slider -->
 	<div id="slider" class="carousel slide" data-ride="carousel">
         <div id="home"></div>
@@ -155,40 +173,18 @@
 		<div class="carousel-inner">
 			<!-- Overlay Text -->
 			<div class="overlay bottomReveal">
-				<div class="center-vertically-holder">
-					<div class="center-vertically">
-						<h1 class="header-title text-white">
-							Bryan &amp; Melissa are getting married
-						</h1>
-						<span class="section-divider section-divider-center section-divider-transparent mt20 mb20"></span>
-						<p class="mb20">On August 18th, 2018 in St Paul, Minnesota</p>
-						<button class="btn btn-lg btn-primary" disabled="disabled" data-toggle="modal" data-target="#rsvp-modal">RSVP Here Later</button>
-					</div>
-				</div>
 
-				<div class="scroll-down hidden-xs mb30">
-		            <a href="#story" data-id="story" class="btn scroll-link"><span class="ion-ios-arrow-down scroll-indicator"></span></a>
-		        </div>
 			</div>
 
 			<!-- Slider Images -->
 			<div class="item active">
 				<div class="fill" style="background-image:url('images/header.jpg');"></div>
-				<div class="carousel-caption">
-                    Taken: At some point in time
-                </div>
 			</div>
 			<div class="item">
 				<div class="fill" style="background-image:url('images/header-2.jpg');"></div>
-				<div class="carousel-caption">
-                    Taken: At some point in time
-                </div>
 			</div>
 			<div class="item">
 				<div class="fill" style="background-image:url('images/header-3.jpg');"></div>
-				<div class="carousel-caption">
-                    Taken: At some point in time
-                </div>
 			</div>
 		</div>
 
@@ -207,8 +203,9 @@
 		<div class="container">
 			<div class="row">
 				<!-- Title -->
+
 				<div class="col-sm-4 col-sm-offset-5">
-					<h2 class="section-title">Our Story</h2>
+					<h2 class="section-title text-mint">Our Story</h2>
 					<span class="section-title-padding"></span>
 				</div><!-- /.column -->
 			</div><!-- /.row -->
@@ -220,7 +217,7 @@
 							<div class="timeline-image scaleReveal"><img alt="Hot Sauce we found in Madison, WI" class="img-responsive" src="images/timeline/madison.jpg"></div>
 							<div class="timeline-panel leftReveal">
 								<div class="timeline-heading">
-									<h3 class="section-subtitle text-light mb15">2013 February</h3>
+									<h3 class="section-subtitle text-mint mb15">2013 February</h3>
 									<h4>We met each other for the first time.</h4>
 								</div>
 								<div class="timeline-body">
@@ -233,7 +230,7 @@
 							<div class="timeline-image scaleReveal"><img alt="St Paul, MN" class="img-responsive" src="images/timeline/stpaulmn.jpg"></div>
 							<div class="timeline-panel rightReveal">
 								<div class="timeline-heading">
-									<h3 class="section-subtitle text-light mb15">2013 August</h3>
+									<h3 class="section-subtitle text-mint mb15">2013 August</h3>
 									<h4>Melissa moves to the Twin Cities</h4>
 								</div>
 								<div class="timeline-body">
@@ -246,7 +243,7 @@
 							<div class="timeline-image scaleReveal"><img alt="Minneapolis, MN" class="img-responsive" src="images/timeline/minneapolis.jpg"></div>
 							<div class="timeline-panel leftReveal">
 								<div class="timeline-heading">
-									<h3 class="section-subtitle text-light mb15">2014 May</h3>
+									<h3 class="section-subtitle text-mint mb15">2014 May</h3>
 									<h4>Bryan moves from Kansas City to Minneapolis</h4>
 								</div>
 								<div class="timeline-body">
@@ -258,8 +255,10 @@
                         <li class="timeline-inverted">
                             <div class="timeline-image scaleReveal"><img alt="us at the twins stadium" class="img-responsive" src="images/timeline/twinsgame.jpg"></div>
                             <div class="timeline-panel rightReveal">
-                                <h3 class="section-subtitle text-light mb15">2014 June</h3>
-                                <h4>LET'S MAKE IT OFFICIAL</h4>
+								<div class="timeline-heading">
+									<h3 class="section-subtitle text-mint mb15">2014 June</h3>
+									<h4>LET'S MAKE IT OFFICIAL</h4>
+								</div>
                                 <div class="timeline-body">
                                     <p>We were now both living in the Twin Cities and decided to make a Twins game our first official date.</p>
                                 </div>
@@ -269,8 +268,10 @@
 						<li>
 							<div class="timeline-image scaleReveal"><img alt="our place in the north loop" class="img-responsive" src="images/timeline/skyline-picture.jpg"></div>
 							<div class="timeline-panel leftReveal">
-								<h3 class="section-subtitle text-light mb15">2015 May</h3>
-								<h4>A (Sports) House Divided</h4>
+								<div class="timeline-heading">
+									<h3 class="section-subtitle text-mint mb15">2015 May</h3>
+									<h4>A (Sports) House Divided</h4>
+								</div>
 								<div class="timeline-body">
 									<p>We knew we had something special when we could stand living together despite cheering for different hockey and football teams!</p>
 								</div>
@@ -280,8 +281,10 @@
                         <li class="timeline-inverted">
                             <div class="timeline-image scaleReveal"><img alt="picture of jeweler creating ring" title="The jewelers is perfectly aligning all of the diamonds within the channel. He is using a burnishing tool to move the channel over the stones which tightens them into place." class="img-responsive" src="images/timeline/ringdrawring.jpg"></div>
                             <div class="timeline-panel rightReveal">
-                                <h3 class="section-subtitle text-light mb15">2016 November</h3>
-                                <h4>The one ring</h4>
+								<div class="timeline-heading">
+									<h3 class="section-subtitle text-mint mb15">2016 November</h3>
+									<h4>The one ring</h4>
+								</div>
                                 <div class="timeline-body">
                                     <p>We had been living together for a year and a half and discussed next steps in our relationship. We wanted a custom ring to make sure it looked perfect.</p>
                                     <p class="text-light"><small><a href="http://www.knoxjewelers.biz" target="_blank">Knox Jewelers</a></small></p>
@@ -292,8 +295,10 @@
                         <li>
                             <div class="timeline-image scaleReveal"><img title="&#x1F351" alt="silver cat" class="img-responsive" src="images/timeline/BAASSHEEEE.jpg"></div>
                             <div class="timeline-panel leftReveal">
-                                <h3 class="section-subtitle text-light mb15">2017 May</h3>
-                                <h4 onclick="window.location='https://xkcd.com/231/'">BANSHEE!</h4>
+								<div class="timeline-heading">
+									<h3 class="section-subtitle text-mint mb15">2017 May</h3>
+									<h4 onclick="window.location='https://xkcd.com/231/'">BANSHEE!</h4>
+								</div>
                                 <div class="timeline-body">
                                     <p>Our Egyptian Mau, Banshee, became a new member of our family. He likes long walks in our apartments, food, and obsessing over his dad.</p>
                                 </div>
@@ -303,8 +308,10 @@
                         <li class="timeline-inverted">
                             <div class="timeline-image scaleReveal"><img alt="" class="img-responsive" src="images/timeline/da-ring.jpg"></div>
                             <div class="timeline-panel rightReveal">
-                                <h3 class="section-subtitle text-light mb15">2017 July</h3>
-                                <img alt="heart eye emoji" src="images/timeline/heart-eye-emoji.png">
+								<div class="timeline-heading">
+									<h3 class="section-subtitle text-mint mb15">2017 July</h3>
+                                	<img alt="heart eye emoji" src="images/timeline/heart-eye-emoji.png">
+								</div>
                                 <div class="timeline-body">
                                     <p>Bryan popped the question early July 15 during our annual trip with our close friends in Las Vegas, NV. It’s time to party!</p>
                                 </div>
@@ -339,7 +346,7 @@
 			<div class="row">
 				<!-- Title -->
 				<div class="col-sm-12">
-					<h2 class="section-title">Gallery</h2>
+					<h2 class="section-title text-mint">Gallery</h2>
 					<span class="section-divider mb40"></span>
 				</div><!-- /.column -->
 			</div><!-- /.row -->
@@ -419,7 +426,7 @@
 			<div class="row">
 				<!-- Title -->
 				<div class="col-sm-12">
-					<h2 class="section-title">Location</h2>
+					<h2 class="section-title text-mint">Location</h2>
 					<span class="section-divider"></span>
 				</div><!-- /.column -->
 			</div><!-- /.row -->
@@ -467,7 +474,7 @@
 			<div class="row">
 				<!-- Title -->
 				<div class="col-sm-12">
-					<h2 class="section-title">Accommodations</h2>
+					<h2 class="section-title text-mint">Accommodations</h2>
 					<span class="section-divider"></span>
 					<p class="mb20">There is a guest code for those staying in the St Paul Hotel, where the ceremony and reception will be. Downtown St. Paul also offers several hotel options in the area that range in budget – all within walking distance. We recommend staying at the St. Paul Hotel or coordinating your own transportation after the event. We will not be coordinating or providing transportation to or from the hotel, but we will be there starting on Friday!</p>
                     <p class="mb20">We recommend using transportation services such as <a href="https://www.uber.com" target="_blank">Uber</a> and <a href="https://www.lyft.com" target="_blank">Lyft</a> to get around. St Paul Hotel offers a shuttle to the airport (but cannot pick up from the airport).</p>
@@ -478,7 +485,8 @@
 				<!-- Item 1 -->
 				<div class="col-sm-4 leftReveal">
                     <h3 class="section-subtitle-2 mb10"><a href="https://www.saintpaulhotel.com" target="_blank">St Paul Hotel</a></h3>
-                    <p>Contact us for guest code</p>
+                    <p class="mb5">Rates starting at $179</p>
+                    <p class="mb5">Guest Code: 180818WALF</p>
 					<p class="mb5">350 Market Street Saint Paul, MN 55102</p>
 					<small>
 						<em>
@@ -489,7 +497,8 @@
 
 				<!-- Item 2 -->
 				<div class="col-sm-4 mt30-xs bottomReveal">
-					<h3 class="section-subtitle-2 mb10"><a href="http://doubletree3.hilton.com/en/hotels/minnesota/doubletree-by-hilton-hotel-st-paul-downtown-MSPMSDT/index.html">DoubleTree by Hilton St. Paul Downtown</a></h3>
+					<h3 class="section-subtitle-2 mb10"><a href="http://doubletree3.hilton.com/en/hotels/minnesota/doubletree-by-hilton-hotel-st-paul-downtown-MSPMSDT/index.html">DoubleTree by Hilton</a></h3>
+                    <p class="mb5">Rates starting at $169</p>
 					<p class="mb5">411 Minnesota St Saint Paul, MN 55101 </p>
 					<small>
 						<em>
@@ -501,7 +510,8 @@
 				<!-- Item 3 -->
 				<div class="col-sm-4 mt30-xs rightReveal">
                     <h3 class="section-subtitle-2 mb10"><a href="https://www.airbnb.com/s/St-Paul--MN--United-States/homes?place_id=ChIJnzfp5M7UslIRKS7aP9KRcsg&refinement_paths%5B%5D=%2Ffor_you&allow_override%5B%5D=&s_tag=E7qCvbe2">Airbnb</a></h3>
-					<p class="mb5">Areas around Grand Ave and Summit St are idea walking distance!</p>
+					<p class="mb5">10+ Minute walk from hotel is all uphill</p>
+                    <p class="mb5">Lyft/Uber are typically $5 to/from the Hotel</p>
                     <small>
                         <em>
                             <a target="_blank" href="https://www.airbnb.com/s/St-Paul--MN--United-States/homes?place_id=ChIJnzfp5M7UslIRKS7aP9KRcsg&refinement_paths%5B%5D=%2Ffor_you&allow_override%5B%5D=&s_tag=E7qCvbe2">Airbnb in St Paul, MN</a>
@@ -518,7 +528,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h2 class="section-title">Travel Information</h2>
+                    <h2 class="section-title text-mint">Travel Information</h2>
                     <span class="section-divider"></span>
                     <p class="mb20">
 						Minneapolis/St Paul is home to an amazing public transportation system.
@@ -551,7 +561,7 @@
 			<div class="row">
 				<!-- Title -->
 				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<h2 class="section-title text-white">Us in Numbers</h2>
+					<h2 class="section-title text-mint">Us in Numbers</h2>
 					<span class="section-divider section-divider-center section-divider-transparent"></span>
 				</div><!-- /.column -->
 			</div><!-- /.row -->
@@ -603,25 +613,25 @@
 			<div class="row">
 				<div class="col-sm-6 col-md-5 col-md-offset-1 col-lg-6 col-lg-offset-0">
 					<!-- Title -->
-					<h2 class="section-title">Honeymoon with Disney!!</h2>
-					<h3 class="section-subtitle-2 text-light mb15">We are going on a <a href="https://disneycruise.disney.go.com/">Disney Cruise</a></h3>
+					<h2 class="section-title text-mint">Honeymoon with Disney!!</h2>
+					<h3 class="section-subtitle-2 text-mint mb15">We are going on a <a class="text-mint" href="https://disneycruise.disney.go.com/">Disney Cruise</a></h3>
 					<span class="section-divider"></span>
 
 					<!-- Content -->
 					<p class="mb30">
 						We would love your support and help paying for the cruise and encourage Disney Gift Cards as a great way to help us out!
-						<a href="https://disneygiftcard.com/"><img alt="disney gift card picture" src="images/timeline/walt-disney-world-holiday-magic.1x.jpg"></a>
+						<!--<a href="https://disneygiftcard.com/"><img alt="disney gift card picture" src="images/timeline/walt-disney-world-holiday-magic.1x.jpg"></a>-->
 					</p>
 				</div><!-- /.column -->
 
 				<div class="col-sm-6 col-md-5 col-md-offset-1 col-lg-6 col-lg-offset-0">
 					<!-- Title -->
-					<h2 class="section-title mt40-xs">Registry</h2>
+					<h2 class="section-title text-mint mt40-xs">Registry Coming Soon!</h2>
 					<span class="section-divider"></span>
 
 					<!-- Logos -->
-					<a href="#"><img src="images/logo-1.png" class="img-responsive registry-logo rightReveal" alt="..."></a>
-					<a href="#"><img src="images/logo-2.png" class="img-responsive registry-logo rightReveal" alt="..."></a>
+					<!--<a href="#"><img src="images/logo-1.png" class="img-responsive registry-logo rightReveal" alt="..."></a>-->
+					<!--<a href="#"><img src="images/logo-2.png" class="img-responsive registry-logo rightReveal" alt="..."></a>-->
 				</div><!-- /.column -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
@@ -648,6 +658,7 @@
 	<script src="js/jquery.inview.min.js"></script>
 	<script src="js/jquery.countTo.js"></script>
 	<script>
+        "use strict";
 		/* ---- Counter (our count) ---- */
 		$('#ourcount').one('inview', function(event, isInView) {
 			if (isInView) {

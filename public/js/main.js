@@ -97,7 +97,7 @@ function submitForm() {
 }
 function formSuccess() {
     $("#contactForm")[0].reset();
-    submitMSG(true, "Message Submitted!")
+    submitMSG(true, "Message Submitted!");
 }
 function formError() {
     $("#contactForm").removeClass().addClass('shake animated').one(
@@ -107,11 +107,8 @@ function formError() {
         });
 }
 function submitMSG(valid, msg) {
-    if (valid) {
-        var msgClasses = "h4 text-success";
-    } else {
-        var msgClasses = "h4 text-danger";
-    }
+    var msgClasses = valid ? "h4 text-success" : "h4 text-danger";
+
     $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
 }
 
@@ -160,16 +157,19 @@ function triggerReveals() {
 
 /* ---- rotater text ---- */
 var current = 1; 
-var height = jQuery('.ticker').height(); 
-var numberDivs = jQuery('.ticker').children().length; 
-var first = jQuery('.ticker h1:nth-child(1)'); 
+var height = jQuery('.ticker').height();
+var numberDivs = jQuery('.ticker').children().length;
+var first = jQuery('.ticker h1:nth-child(1)');
+
 setInterval(function() {
     var number = current * -height;
     first.css('margin-top', number + 'px');
     if (current === numberDivs) {
         first.css('margin-top', '0px');
         current = 1;
-    } else current++;
+    } else {
+        current++;
+    }
 }, 2500);
 
 /* ---- slideshow continue ---- */
