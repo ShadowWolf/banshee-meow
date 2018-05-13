@@ -26,6 +26,7 @@ Author:Denis Samardjiev
     =Our count
     =Footer
     =Media Queries
+    =RSVP Form
 */
 
 @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,300,700|Playfair+Display);
@@ -1247,4 +1248,72 @@ footer {
     .carousel-fade .carousel-inner > .item.next, .carousel-fade .carousel-inner > .item.active.right { opacity:0; -webkit-transform:translate3d(0, 0, 0); transform:translate3d(0, 0, 0); }
     .carousel-fade .carousel-inner > .item.prev, .carousel-fade .carousel-inner > .item.active.left { opacity:0; -webkit-transform:translate3d(0, 0, 0); transform:translate3d(0, 0, 0); }
     .carousel-fade .carousel-inner > .item.next.left, .carousel-fade .carousel-inner > .item.prev.right ,.carousel-fade .carousel-inner > .item.active { opacity:1; -webkit-transform:translate3d(0, 0, 0); transform:translate3d(0, 0, 0); }
+}
+
+/* =RSVP Form
+-------------------------------------------------------------- */
+#rsvp-form {
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+#rsvp-form fieldset {
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 10%;
+    position: relative;
+}
+
+#rsvp-form fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#rsvp-progress-bar {
+    overflow: hidden;
+    counter-reset: step;
+}
+
+#rsvp-progress-bar li {
+    list-style-type: none;
+    text-transform: uppercase;
+    width: 33.33%;
+    float: left;
+    position: relative;
+}
+
+#rsvp-progress-bar li:before {
+    content: counter(step);
+    counter-increment: step;
+    width: 24px;
+    height: 24px;
+    line-height: 23px;
+
+    display: block;
+    font-size: 12px;
+    background: white;
+    color: #19254d;
+    border-radius: 25px;
+    margin: 0 auto 10px auto;
+}
+
+#rsvp-progress-bar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: black;
+    position: absolute;
+    left: -50%;
+    top: 9px;
+    z-index: -1;
+}
+
+#rsvp-progress-bar li:first-child:after {
+    content: none;
+}
+
+#rsvp-progress-bar li.active:before, #rsvp-progress-bar li.active:after {
+    background: #a6d8bd;
+    color: #19254d;
 }

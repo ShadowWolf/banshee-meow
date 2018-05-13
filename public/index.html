@@ -14,6 +14,9 @@
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+	<!-- jQuery Easing Plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
 	<!-- Parallax -->
 	<script src="js/parallax.min.js"></script>
 
@@ -67,7 +70,7 @@
 							<li><a href="#directions" data-id="directions" class="scroll-link">Directions</a></li>
                             <li><a href="#accommodations" data-id="accommodations" class="scroll-link">Accommodations</a></li>
                             <li><a href="#gifts" data-id="gifts" class="scroll-link">Registry</a></li>
-							<li class="nav-btn"><input type="button" disabled="disabled" data-toggle="modal" data-target="#rsvp-modal" class="btn btn-primary btn-lg" value="RSVP" /></li>
+							<li class="nav-btn"><input type="button" data-toggle="modal" data-target="#rsvp-modal" class="btn btn-primary btn-lg" value="RSVP" /></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.row -->
@@ -75,75 +78,125 @@
 		</nav>
 		<!-- End Navigation -->
 
-		<!-- Begin RSVP Form -->
+		<!-- Begin Bryan & Melissa RSVP Form -->
 		<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span>
-		                </button>
-		                <span class="pe-7s-anchor services-icon-2"></span>
-		                <h4 class="modal-title">RSVP</h4>
-		            </div>
-		            <div class="modal-body">
-		            	<p class="mb20">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
-						<form data-toggle="validator" id="contactForm" name="contactForm">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="name">Name *</label>
-										<div class="controls">
-											<input class="form-control" data-error="This section is required." id="name" placeholder="Your full name" required="" type="text">
-											<div class="help-block with-errors"></div>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span></button>
+						<span class="pe-7s-anchor services-icon-2"></span>
+						<h4 class="modal-title">RSVP To Bryan &amp; Melissa's Wedding</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<form id="rsvp-form">
+									<ul id="rsvp-progress-bar" >
+										<li>Your info</li>
+										<li>RSVP Details</li>
+										<li>Finish</li>
+									</ul>
+									<fieldset>
+										<h2 class="modal-header">Personal Details</h2>
+										<p class="mb20">Please enter your first and last name to get started.</p>
+										<div class="form-group">
+											<label for="name">Name *</label>
+											<div class="controls">
+												<input class="form-control" data-error="Please enter your name" id="name" placeholder="First and Last Name" required="" type="text">
+												<div class="help-block-with-errors"></div>
+											</div>
 										</div>
-									</div>
-								</div><!-- /.column -->
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="name">Email *</label>
-										<div class="controls">
-											<input class="email form-control" data-error="This section is required." id="email" placeholder="Enter your email" required="" type="email">
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-								</div><!-- /.column -->
-							</div><!-- /.row -->
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="name">Guests *</label>
-										<div class="controls">
-											<input class="form-control" data-error="This section is required."
-											id="msg_subject" placeholder="Total guests with names" required="" type="text">
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-								</div><!-- /.column -->
-							</div><!-- /.row -->
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group mb10">
-										<label for="name">Message *</label>
-										<div class="controls">
-											<textarea class="form-control" data-error="This section is required." id="message" placeholder="Any extra information" required="" rows="5"></textarea>
-											<div class="help-block with-errors"></div>
-										</div>
-									</div>
-								</div>
+										<input type="button" name="rsvp-personal-next" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
+									</fieldset>
+									<fieldset>
+										<h2 class="modal-header">RSVP Details</h2>
+										<input type="button" name="rsvp-details-previous" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
+										<input type="button" name="rsvp-details--next" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
+									</fieldset>
+									<fieldset>
+										<h2 class="modal-header">Something something something dark side</h2>
+										<input type="button" name="rsvp-end-previous" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
+										<input type="button" name="rsvp-end-next" class="rsvp-submit btn btn-primary btn-block btn-lg" value="Finish"/>
+									</fieldset>
+								</form>
 							</div>
-							<div class="row">
-								<div class="col-sm-12 mb20">
-									<div id="msgSubmit" class="h4 hidden no-margin-bottom"></div> 
-								</div><!-- /.column -->
-								<div class="col-sm-12 text-right">
-									<button type="submit" id="submit" class="btn btn-primary btn-block btn-lg">Send</button>
-								</div><!-- /.column -->
-							</div><!-- /.row -->
-						</form><!-- /.form -->
-		            </div>
-		        </div><!-- /.modal-content -->
-		    </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bryan & Melissa RSVP Form -->
+
+		<!-- Begin RSVP Form -->
+		<!--<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog">-->
+		    <!--<div class="modal-dialog">-->
+		        <!--<div class="modal-content">-->
+		            <!--<div class="modal-header">-->
+		                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span>-->
+		                <!--</button>-->
+		                <!--<span class="pe-7s-anchor services-icon-2"></span>-->
+		                <!--<h4 class="modal-title">RSVP</h4>-->
+		            <!--</div>-->
+		            <!--<div class="modal-body">-->
+		            	<!--<p class="mb20">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>-->
+						<!--<form data-toggle="validator" id="contactForm" name="contactForm">-->
+							<!--<div class="row">-->
+								<!--<div class="col-sm-6">-->
+									<!--<div class="form-group">-->
+										<!--<label for="name">Name *</label>-->
+										<!--<div class="controls">-->
+											<!--<input class="form-control" data-error="This section is required." id="name" placeholder="Your full name" required="" type="text">-->
+											<!--<div class="help-block with-errors"></div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
+									<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+										<!--&lt;!&ndash;<label for="name">Email *</label>&ndash;&gt;-->
+										<!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
+											<!--&lt;!&ndash;<input class="email form-control" data-error="This section is required." id="email" placeholder="Enter your email" required="" type="email">&ndash;&gt;-->
+											<!--&lt;!&ndash;<div class="help-block with-errors"></div>&ndash;&gt;-->
+										<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&lt;!&ndash; /.column &ndash;&gt;&ndash;&gt;-->
+							<!--&lt;!&ndash;</div>&lt;!&ndash; /.row &ndash;&gt;&ndash;&gt;-->
+							<!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
+									<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+										<!--&lt;!&ndash;<label for="name">Guests *</label>&ndash;&gt;-->
+										<!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
+											<!--&lt;!&ndash;<input class="form-control" data-error="This section is required."&ndash;&gt;-->
+											<!--&lt;!&ndash;id="msg_subject" placeholder="Total guests with names" required="" type="text">&ndash;&gt;-->
+											<!--&lt;!&ndash;<div class="help-block with-errors"></div>&ndash;&gt;-->
+										<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&lt;!&ndash; /.column &ndash;&gt;&ndash;&gt;-->
+							<!--&lt;!&ndash;</div>&lt;!&ndash; /.row &ndash;&gt;&ndash;&gt;-->
+							<!--<div class="row">-->
+								<!--<div class="col-sm-12">-->
+									<!--<div class="form-group mb10">-->
+										<!--<label for="name">Message *</label>-->
+										<!--<div class="controls">-->
+											<!--&lt;!&ndash;<textarea class="form-control" data-error="This section is required." id="message" placeholder="Any extra information" required="" rows="5"></textarea>&ndash;&gt;-->
+											<!--<div class="help-block with-errors"></div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="row">-->
+								<!--<div class="col-sm-12 mb20">-->
+									<!--<div id="msgSubmit" class="h4 hidden no-margin-bottom"></div> -->
+								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
+								<!--<div class="col-sm-12 text-right">-->
+									<!--<button type="submit" id="to-page-2" data-target="#rsvp-modal" class="btn btn-primary btn-block btn-lg">To Page 2</button>-->
+									<!--&lt;!&ndash;<button type="submit" id="submit" class="btn btn-primary btn-block btn-lg">Send</button>&ndash;&gt;-->
+								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
+							<!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+						<!--</form>&lt;!&ndash; /.form &ndash;&gt;-->
+		            <!--</div>-->
+		        <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+		    <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+		<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
 		<!-- End RSVP Form -->
 
 	</header>
@@ -696,5 +749,6 @@
 	<script src="js/form-validator.min.js"></script>
 	<script src="js/scrollreveal.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/rsvp.js"></script>
 </body>
 </html>
