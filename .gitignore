@@ -109,3 +109,5 @@ fabric.properties
 
 # Client Secret
 client_secret.json
+client_id.json
+credentials.json

@@ -100,11 +100,7 @@ if (typeof sr === 'undefined') {
         delay: 50
     });
 }
-Royal_Preloader.config({
-    onComplete: function () {
-        triggerReveals();
-    }
-});
+
 function triggerReveals() {
     sr.reveal('.bottomReveal', {
         origin: 'bottom'
@@ -135,6 +131,8 @@ function triggerReveals() {
         scale: 0.6
     });
 }
+
+$(document).ready(triggerReveals);
 
 /* ---- rotater text ---- */
 var current = 1; 

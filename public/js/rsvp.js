@@ -71,7 +71,7 @@ $(".rsvp-submit").click(function() {
     animating = true;
 
     current_page = $(this).parent();
-0
+
     $("#rsvp-progress-bar li").eq($("fieldset").index(current_page)).addClass("active")
     alert("AAAANNNNDD We're done here");
 
