@@ -20,11 +20,10 @@ function validateName() {
 
             $("#reservation-name-messages").text(message);
         }, function(fail) {
-            console.log(fail.status);
-            if (fail.status === 404) {
-                $("#reservation-name-messages").text("There was a problem loading or finding your reservation. Please contact us and we'll help you out!");
-            } else if (fail.status === 401) {
+            if (fail.status === 401) {
                 $("#reservation-name-messages").text("Please use your full first and last name");
+            } else {
+                $("#reservation-name-messages").text("There was a problem loading or finding your reservation. Please contact us and we'll help you out!");
             }
         });
 }
