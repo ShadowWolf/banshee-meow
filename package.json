@@ -14,7 +14,7 @@
     "bluebird": "^3.5.1",
     "compression": "^1.7.2",
     "express": "^4.16.2",
-    "googleapis": "^30.0.0"
+    "pg": "^7.4.3"
   },
   "engines": {
     "node": "9.7.1"

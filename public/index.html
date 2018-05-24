@@ -14,6 +14,9 @@
 	<!-- jQuery Easing Plugin -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
+	<!-- JS Cookie -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
 	<!-- Parallax -->
 	<script src="js/parallax.min.js"></script>
 
@@ -64,8 +67,10 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span></button>
-						<span class="pe-7s-anchor services-icon-2"></span>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="ion-ios-close-empty"/>
+						</button>
+						<span class="pe-7s-anchor services-icon-2"/>
 						<h4 class="modal-title">RSVP To Bryan &amp; Melissa's Wedding</h4>
 					</div>
 					<div class="modal-body">
@@ -77,28 +82,40 @@
 										<li>RSVP Details</li>
 										<li>Finish</li>
 									</ul>
-									<fieldset>
+									<fieldset id="rsvp-personal" class="rsvp-first-page" onValidate="validateName">
 										<h2 class="modal-header">Personal Details</h2>
 										<p class="mb20">Please enter your first and last name to get started.</p>
 										<div class="form-group">
 											<label for="name">Name *</label>
 											<div class="controls">
-												<input class="form-control" data-error="Please enter your name" id="name" placeholder="First and Last Name" required="" type="text">
-												<div class="help-block-with-errors"></div>
+												<input class="form-control" data-error="Please enter your name" id="name" name="name" placeholder="First and Last Name" required="" type="text">
+												<div class="help-block-with-errors" id="reservation-name-messages"></div>
 											</div>
 										</div>
-										<input type="button" name="rsvp-personal-next" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
 									</fieldset>
-									<fieldset>
-										<h2 class="modal-header">RSVP Details</h2>
-										<input type="button" name="rsvp-details-previous" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
-										<input type="button" name="rsvp-details--next" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
+									<fieldset id="rsvp-reservation" onActivate="findRsvpDetails">
+										<div id="rsvp-loading-screen">
+											<h2 class="modal-header">Just a moment</h2>
+											<p class="mb20">Locating your reservation!</p>
+										</div>
+										<div id="rsvp-failed">
+											<h2 class="modal-header">Oh no!</h2>
+											<p class="mb20">There was a problem loading or finding your reservation. Please contact us and we'll help you out!</p>
+										</div>
+										<div id="rsvp-reservation-details">
+
+										</div>
+
+
 									</fieldset>
-									<fieldset>
+									<fieldset id="rsvp-final" class="rsvp-last-page">
 										<h2 class="modal-header">Something something something dark side</h2>
-										<input type="button" name="rsvp-end-previous" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
-										<input type="button" name="rsvp-end-next" class="rsvp-submit btn btn-primary btn-block btn-lg" value="Finish"/>
 									</fieldset>
+									<div class="col-md-12">
+										<input type="button" id="previous-button" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
+										<input type="button" id="next-button" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
+										<input type="submit" id="submit-button" class="rsvp-submit btn btn-primary btn-block btn-lg" value="Done"/>
+									</div>
 								</form>
 							</div>
 						</div>
@@ -741,5 +758,6 @@
 	<script src="js/scrollreveal.min.js"></script>
 	<script src="js/main.js"></script>
 	<script src="js/rsvp.js"></script>
+	<script src="js/rsvp-events.js"></script>
 </body>
 </html>

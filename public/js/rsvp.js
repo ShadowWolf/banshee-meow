@@ -1,103 +1,146 @@
 "use strict";
-var current_page;
-var next_page;
-var previous_page;
+var currentPage;
+var nextPage;
+var previousPage;
+var lastPage;
+var firstPage;
 var left;
 var opacity;
 var scale;
 var animating;
+var guestName;
+var reservationId;
+var reservationDetails;
+
+$(document).ready(function() {
+    $("#rsvp-reservation-details").hide();
+    $("#rsvp-failed").hide();
+
+});
+
+$("#rsvp-modal").on('show.bs.modal', function(e) {
+    // Turn off the carousel when we show the modal
+    $("#slider").carousel('pause');
+
+    lastPage = $(".rsvp-last-page");
+    firstPage = $(".rsvp-first-page");
+
+    previousPage = null;
+    currentPage = firstPage;
+    nextPage = currentPage.next();
+
+    guestName = Cookies.get("rsvpName");
+    $("#name").val(guestName);
+    reservationId = Cookies.get("reservationId");
+
+    setNavbarPage();
+});
+
+$("#rsvp-modal").on('hide.bs.modal', function(e) {
+    $("#slider").carousel('cycle');
+});
+
+function setNavbarPage() {
+    $("#rsvp-progress-bar li").removeClass("active");
+    $("#rsvp-progress-bar li").eq($("fieldset").index(currentPage)).addClass("active");
+    if (currentPage.is(firstPage)) {
+        $("input:button.rsvp-previous").hide();
+        $("input:submit.rsvp-submit").hide();
+        $("input:button.rsvp-next").show();
+    } else if (currentPage.is(lastPage)) {
+        $("input:button.rsvp-previous").show();
+        $("input:button.rsvp-next").hide();
+        $("input:submit.rsvp-submit").show();
+    } else {
+        $("input:button.rsvp-previous").show();
+        $("input:button.rsvp-next").show();
+        $("input:submit.rsvp-submit").hide();
+    }
+}
+
+function runFunction(selector, attributeName, self) {
+    var func = selector.attr(attributeName);
+    if (func &&
+        window[func] &&
+        typeof(window[func]) === "function") {
+        return window[func].bind(self)();
+    } else {
+        return $.when();
+    }
+}
 
 $(".rsvp-next").click(function() {
     if (animating) return false;
     animating = true;
 
-    current_page = $(this).parent();
-    next_page = $(this).parent().next();
+    var validationPromise = runFunction(currentPage, "onValidate", this);
 
-    $("#rsvp-progress-bar li").eq($("fieldset").index(current_page)).addClass("active")
-
-    next_page.show();
-    current_page.animate({height: "toggle"}, {
-        // step: function(now, mx) {
-        //     // Slide next_page from the right
-        //     left = (now * 50) + "%";
-        //     opacity = 1 - now;
-        //     next_page.css({
-        //         'left': left,
-        //         'opacity': opacity
-        //     })
-        // },
-        duration: 800,
-        complete: function () {
-            current_page.hide();
-            animating = false;
+    validationPromise
+        .then(
+        function () {
+            if (currentPage.is(lastPage)) {
+                submitForm();
+            } else {
+                currentPage.fadeOut(400,
+                    function () {
+                        nextPage.fadeIn({
+                            duration: 400,
+                            easing: 'easeInSine',
+                            complete: function () {
+                                previousPage = currentPage;
+                                currentPage = nextPage;
+                                nextPage = currentPage.next();
+                                setNavbarPage();
+                                runFunction(currentPage, "onActivate", this);
+                                animating = false;
+                            }
+                        });
+                    });
+            }
         },
-        easing: 'easeInSine'
-    })
+        function() {
+            animating = false;
+        });
 });
 
 $(".rsvp-previous").click(function() {
     if (animating) return false;
     animating = true;
 
-    current_page = $(this).parent();
-    previous_page = $(this).parent().prev();
-
-    $("#rsvp-progress-bar li").eq($("fieldset").index(previous_page)).removeClass("active");
-
-    previous_page.show();
-    current_page.animate({height: "toggle"}, {
-        // step: function (now, mx) {
-        //     left = ((1 - now) + 50) + "%";
-        //     opacity = 1 - now;
-        //     current_page.css({
-        //         'left': left
-        //     });
-        //     previous_page.css({
-        //         'opacity': opacity
-        //     });
-        // },
-        duration: 800,
-        complete: function () {
-            current_page.hide();
-            animating = false;
-        },
-        easing: 'easeInSine'
-    })
+    currentPage.fadeOut(400,
+        function() {
+            previousPage.fadeIn({
+                duration: 400,
+                easing: 'easeInSine',
+                complete: function() {
+                    nextPage = currentPage;
+                    currentPage = previousPage;
+                    previousPage = previousPage.prev();
+                    setNavbarPage();
+                    animating = false;
+                }
+            })
+        });
 });
 
-$(".rsvp-submit").click(function() {
-    if (animating) return false;
-    animating = true;
+/* ---- contact form ---- */
 
-    current_page = $(this).parent();
 
-    $("#rsvp-progress-bar li").eq($("fieldset").index(current_page)).addClass("active")
-    alert("AAAANNNNDD We're done here");
+function formSuccess() {
+    $("#rsvp-form")[0].reset();
+    submitMSG(true, "Message Submitted!");
+}
 
-});
+function formError() {
+    $("#rsvp-form").removeClass().addClass('shake animated').one(
+        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
+        function() {
+            $(this).removeClass();
+        });
+}
 
-function submitForm() {
-    $.ajax({
-        type: 'POST',
-        url: 'api/rsvp',
+function submitMSG(valid, msg) {
+    var msgClasses = valid ? "h4 text-success" : "h4 text-danger";
 
-    })
-    // Initiate Variables With Form Content
-
-    //alert('El Wompo');
-    // $.ajax({
-    //     type: "POST",
-    //     url: "php/contact.php",
-    //     data: "name=" + name + "&email=" + email + "&msg_subject=" +
-    //         msg_subject + "&message=" + message,
-    //     success: function(text) {
-    //         if (text == "success") {
-    //             formSuccess();
-    //         } else {
-    //             formError();
-    //             submitMSG(false, text);
-    //         }
-    //     }
-    // });
+    $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
 }
