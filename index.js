@@ -4,7 +4,7 @@ const express = require('express', '4.16.2');
 const compression = require('compression');
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static('public', {maxAge: '10 days'}));
 app.use(compression());
 
 const portNumber = process.env.PORT || 1500;
