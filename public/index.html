@@ -7,39 +7,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<title>Bryan Wolf and Melissa Walfoort</title>
-		
-	<!-- Preloader CSS -->
-	<link href="css/royal_preloader.css" rel="stylesheet">
 
 	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+	<!-- jQuery Easing Plugin -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+	<!-- JS Cookie -->
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
 	<!-- Parallax -->
 	<script src="js/parallax.min.js"></script>
-
-	<!-- Preloader -->
-	<script src="js/royal_preloader.min.js"></script>
-	<script>
-        "use strict";
-		Royal_Preloader.config({
-		    mode:           'number',
-		    showProgress:   false,
-		    background:     '#ffffff'
-		});
-	</script>
 
 	<!-- Stylesheets -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/ionicons.min.css" rel="stylesheet">
 	<link href="css/magnific-popup.css" rel="stylesheet">
 	<link href="css/style.css" rel="stylesheet" title="main-css">
-	<link rel="alternate stylesheet" type="text/css" href="css/colors/orange.css" title="orange">
-	<link rel="alternate stylesheet" type="text/css" href="css/colors/gold.css" title="gold">
-	<link rel="alternate stylesheet" type="text/css" href="css/colors/sleek.css" title="sleek">
 </head>
-<body class="royal_preloader" data-spy="scroll" data-target=".navbar" data-offset="90">
-	<div id="royal_preloader"></div>
-
+<body data-spy="scroll" data-target=".navbar" data-offset="90">
 	<!-- Begin Header -->
 	<header>
 		<!-- Begin Navigation -->
@@ -67,7 +54,7 @@
 							<li><a href="#directions" data-id="directions" class="scroll-link">Directions</a></li>
                             <li><a href="#accommodations" data-id="accommodations" class="scroll-link">Accommodations</a></li>
                             <li><a href="#gifts" data-id="gifts" class="scroll-link">Registry</a></li>
-							<li class="nav-btn"><input type="button" disabled="disabled" data-toggle="modal" data-target="#rsvp-modal" class="btn btn-primary btn-lg" value="RSVP" /></li>
+							<li class="nav-btn"><input disabled="disabled" type="button" data-toggle="modal" data-target="#rsvp-modal" class="btn btn-primary btn-lg" value="RSVP" /></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.row -->
@@ -75,75 +62,139 @@
 		</nav>
 		<!-- End Navigation -->
 
-		<!-- Begin RSVP Form -->
+		<!-- Begin Bryan & Melissa RSVP Form -->
 		<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog">
-		    <div class="modal-dialog">
-		        <div class="modal-content">
-		            <div class="modal-header">
-		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span>
-		                </button>
-		                <span class="pe-7s-anchor services-icon-2"></span>
-		                <h4 class="modal-title">RSVP</h4>
-		            </div>
-		            <div class="modal-body">
-		            	<p class="mb20">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
-						<form data-toggle="validator" id="contactForm" name="contactForm">
-							<div class="row">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="name">Name *</label>
-										<div class="controls">
-											<input class="form-control" data-error="This section is required." id="name" placeholder="Your full name" required="" type="text">
-											<div class="help-block with-errors"></div>
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="ion-ios-close-empty"/>
+						</button>
+						<span class="pe-7s-anchor services-icon-2"/>
+						<h4 class="modal-title">RSVP To Bryan &amp; Melissa's Wedding</h4>
+					</div>
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<form id="rsvp-form">
+									<ul id="rsvp-progress-bar" >
+										<li>Your info</li>
+										<li>RSVP Details</li>
+										<li>Finish</li>
+									</ul>
+									<fieldset id="rsvp-personal" class="rsvp-first-page" onValidate="validateName">
+										<h2 class="modal-header">Personal Details</h2>
+										<p class="mb20">Please enter your first and last name to get started.</p>
+										<div class="form-group">
+											<label for="name">Name *</label>
+											<div class="controls">
+												<input class="form-control" data-error="Please enter your name" id="name" name="name" placeholder="First and Last Name" required="" type="text">
+												<div class="help-block-with-errors" id="reservation-name-messages"></div>
+											</div>
 										</div>
-									</div>
-								</div><!-- /.column -->
-								<div class="col-sm-6">
-									<div class="form-group">
-										<label for="name">Email *</label>
-										<div class="controls">
-											<input class="email form-control" data-error="This section is required." id="email" placeholder="Enter your email" required="" type="email">
-											<div class="help-block with-errors"></div>
+									</fieldset>
+									<fieldset id="rsvp-reservation" onActivate="findRsvpDetails">
+										<div id="rsvp-loading-screen">
+											<h2 class="modal-header">Just a moment</h2>
+											<p class="mb20">Locating your reservation!</p>
 										</div>
-									</div>
-								</div><!-- /.column -->
-							</div><!-- /.row -->
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group">
-										<label for="name">Guests *</label>
-										<div class="controls">
-											<input class="form-control" data-error="This section is required."
-											id="msg_subject" placeholder="Total guests with names" required="" type="text">
-											<div class="help-block with-errors"></div>
+										<div id="rsvp-failed">
+											<h2 class="modal-header">Oh no!</h2>
+											<p class="mb20">There was a problem loading or finding your reservation. Please contact us and we'll help you out!</p>
 										</div>
-									</div>
-								</div><!-- /.column -->
-							</div><!-- /.row -->
-							<div class="row">
-								<div class="col-sm-12">
-									<div class="form-group mb10">
-										<label for="name">Message *</label>
-										<div class="controls">
-											<textarea class="form-control" data-error="This section is required." id="message" placeholder="Any extra information" required="" rows="5"></textarea>
-											<div class="help-block with-errors"></div>
+										<div id="rsvp-reservation-details">
+
 										</div>
+
+
+									</fieldset>
+									<fieldset id="rsvp-final" class="rsvp-last-page">
+										<h2 class="modal-header">Something something something dark side</h2>
+									</fieldset>
+									<div class="col-md-12">
+										<input type="button" id="previous-button" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
+										<input type="button" id="next-button" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
+										<input type="submit" id="submit-button" class="rsvp-submit btn btn-primary btn-block btn-lg" value="Done"/>
 									</div>
-								</div>
+								</form>
 							</div>
-							<div class="row">
-								<div class="col-sm-12 mb20">
-									<div id="msgSubmit" class="h4 hidden no-margin-bottom"></div> 
-								</div><!-- /.column -->
-								<div class="col-sm-12 text-right">
-									<button type="submit" id="submit" class="btn btn-primary btn-block btn-lg">Send</button>
-								</div><!-- /.column -->
-							</div><!-- /.row -->
-						</form><!-- /.form -->
-		            </div>
-		        </div><!-- /.modal-content -->
-		    </div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Bryan & Melissa RSVP Form -->
+
+		<!-- Begin RSVP Form -->
+		<!--<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog">-->
+		    <!--<div class="modal-dialog">-->
+		        <!--<div class="modal-content">-->
+		            <!--<div class="modal-header">-->
+		                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span>-->
+		                <!--</button>-->
+		                <!--<span class="pe-7s-anchor services-icon-2"></span>-->
+		                <!--<h4 class="modal-title">RSVP</h4>-->
+		            <!--</div>-->
+		            <!--<div class="modal-body">-->
+		            	<!--<p class="mb20">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>-->
+						<!--<form data-toggle="validator" id="contactForm" name="contactForm">-->
+							<!--<div class="row">-->
+								<!--<div class="col-sm-6">-->
+									<!--<div class="form-group">-->
+										<!--<label for="name">Name *</label>-->
+										<!--<div class="controls">-->
+											<!--<input class="form-control" data-error="This section is required." id="name" placeholder="Your full name" required="" type="text">-->
+											<!--<div class="help-block with-errors"></div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
+									<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+										<!--&lt;!&ndash;<label for="name">Email *</label>&ndash;&gt;-->
+										<!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
+											<!--&lt;!&ndash;<input class="email form-control" data-error="This section is required." id="email" placeholder="Enter your email" required="" type="email">&ndash;&gt;-->
+											<!--&lt;!&ndash;<div class="help-block with-errors"></div>&ndash;&gt;-->
+										<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&lt;!&ndash; /.column &ndash;&gt;&ndash;&gt;-->
+							<!--&lt;!&ndash;</div>&lt;!&ndash; /.row &ndash;&gt;&ndash;&gt;-->
+							<!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+								<!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
+									<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+										<!--&lt;!&ndash;<label for="name">Guests *</label>&ndash;&gt;-->
+										<!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
+											<!--&lt;!&ndash;<input class="form-control" data-error="This section is required."&ndash;&gt;-->
+											<!--&lt;!&ndash;id="msg_subject" placeholder="Total guests with names" required="" type="text">&ndash;&gt;-->
+											<!--&lt;!&ndash;<div class="help-block with-errors"></div>&ndash;&gt;-->
+										<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+								<!--&lt;!&ndash;</div>&lt;!&ndash; /.column &ndash;&gt;&ndash;&gt;-->
+							<!--&lt;!&ndash;</div>&lt;!&ndash; /.row &ndash;&gt;&ndash;&gt;-->
+							<!--<div class="row">-->
+								<!--<div class="col-sm-12">-->
+									<!--<div class="form-group mb10">-->
+										<!--<label for="name">Message *</label>-->
+										<!--<div class="controls">-->
+											<!--&lt;!&ndash;<textarea class="form-control" data-error="This section is required." id="message" placeholder="Any extra information" required="" rows="5"></textarea>&ndash;&gt;-->
+											<!--<div class="help-block with-errors"></div>-->
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+							<!--<div class="row">-->
+								<!--<div class="col-sm-12 mb20">-->
+									<!--<div id="msgSubmit" class="h4 hidden no-margin-bottom"></div> -->
+								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
+								<!--<div class="col-sm-12 text-right">-->
+									<!--<button type="submit" id="to-page-2" data-target="#rsvp-modal" class="btn btn-primary btn-block btn-lg">To Page 2</button>-->
+									<!--&lt;!&ndash;<button type="submit" id="submit" class="btn btn-primary btn-block btn-lg">Send</button>&ndash;&gt;-->
+								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
+							<!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
+						<!--</form>&lt;!&ndash; /.form &ndash;&gt;-->
+		            <!--</div>-->
+		        <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+		    <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+		<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
 		<!-- End RSVP Form -->
 
 	</header>
@@ -432,26 +483,35 @@
 			</div><!-- /.row -->
 
 			<div class="row">
-				<div class="col-sm-4 bottomReveal">
+				<div class="col-sm-4 col-sm-offset-1 bottomReveal">
 					<h3 class="section-subtitle-2 mb10"><a href="https://www.saintpaulhotel.com" target="_blank">St Paul Hotel</a></h3>
 					<p class="mb5"><a class="popup-gmaps underline-link" href="https://maps.google.com/maps?q=The+Saint+Paul+Hotel,+350+Market+St,+St+Paul,+MN+55102">350 Market St St Paul, MN 55102</a></p>
-					<p class="mb5">August 18th, 4:30 - Midnight · St Paul, MN </p>
-					<p class="mb5">We recommend arriving fifteen minutes before the ceremony time begins.</p>
-					<p class="mb5">With respect, we would like our special day to be an adult only (17+) occasion.</p>
+					<p class="mb5">August 18th, 4:30 - Midnight</p>
 				</div><!-- /.column -->
-				<div class="col-sm-4 col-sm-offset-2 bottomReveal">
+			</div>
+			<div class="row">
+				<br>
+				<div class="col-sm-4 col-sm-offset-1 bottomReveal">
+					<small><em>With respect, we would like our special day to be an adult only occasion.</em></small>
+				</div>
+				<div class="col-sm-4 bottomReveal">
+					<small><em>We recommend arriving fifteen minutes before the ceremony time begins.</em></small>
+				</div>
+			</div>
+
+			<div class="row">
+				<br>
+				<div class="col-sm-4 col-sm-offset-1 bottomReveal">
 					<p class="mb5">
 						<small>
-							<em>
-								Attire: Our wedding is will be fully indoors (with air conditioning!) at a historical boutique hotel, so dressy/wedding casual is encouraged. Be sure to wear your dancing shoes!<br/>
-							</em>
+								Our wedding will be fully indoors (with air conditioning!) at a historical boutique hotel, so <a href="https://www.theknot.com/content/wedding-guest-attire-cheat-sheet" target="_blank" class="underline-link">dressy/wedding casual</a> is encouraged. Be sure to wear your dancing shoes!<br/>
 						</small>
 					</p>
+				</div>
+				<div class="col-sm-4  bottomReveal">
 					<p class="mb5">
 						<small>
-							<em>
-								Please note we will be offering a full selection of cocktails, beer, and wine for a portion of the night and will switch to a cash bar for those who wish to partake later into the night.
-							</em>
+								We will be offering a full selection of cocktails, beer, and wine for a portion of the night and will switch to a cash bar for those who wish to partake later into the night.
 						</small>
 					</p>
 				</div>
@@ -465,6 +525,7 @@
 				<div class="col-sm-10 leftReveal">
 					<h3 class="section-subtitle-2 mb10">Ceremony Directions</h3>
 					<p class="mb5">The ceremony and reception will be hosted in the lower level of the Saint Paul Hotel. </p>
+					
 					<p class="mb5">If you’re unsure of where to go, there will be an electronic sign across from the Saint Paul Grill that will guide you. There will also be a greeter – either Mary Jo or someone from her team – directing people near the main entrance.</p>
 					<ul class="list-arrow">
 						<li>From the main entrance (located on Market Street): take a left and go down the grand staircases.</li>
@@ -696,5 +757,7 @@
 	<script src="js/form-validator.min.js"></script>
 	<script src="js/scrollreveal.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/rsvp.js"></script>
+	<script src="js/rsvp-events.js"></script>
 </body>
 </html>

@@ -63,54 +63,6 @@ $(document).on('click','.navbar-collapse.in',function(e) {
     }
 });
 
-/* ---- contact form ---- */
-$("#contactForm").validator().on("submit", function(event) {
-    if (event.isDefaultPrevented()) {
-        formError();
-        submitMSG(false, "Did you fill in the form properly?");
-    } else {
-        event.preventDefault();
-        submitForm();
-    }
-});
-function submitForm() {
-    // Initiate Variables With Form Content
-    var name = $("#name").val();
-    var email = $("#email").val();
-    var msg_subject = $("#msg_subject").val();
-    var message = $("#message").val();
-    alert('El Wompo');
-    // $.ajax({
-    //     type: "POST",
-    //     url: "php/contact.php",
-    //     data: "name=" + name + "&email=" + email + "&msg_subject=" +
-    //         msg_subject + "&message=" + message,
-    //     success: function(text) {
-    //         if (text == "success") {
-    //             formSuccess();
-    //         } else {
-    //             formError();
-    //             submitMSG(false, text);
-    //         }
-    //     }
-    // });
-}
-function formSuccess() {
-    $("#contactForm")[0].reset();
-    submitMSG(true, "Message Submitted!");
-}
-function formError() {
-    $("#contactForm").removeClass().addClass('shake animated').one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass();
-        });
-}
-function submitMSG(valid, msg) {
-    var msgClasses = valid ? "h4 text-success" : "h4 text-danger";
-
-    $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
-}
 
 /* ---- animations ---- */
 if (typeof sr === 'undefined') {
@@ -119,11 +71,7 @@ if (typeof sr === 'undefined') {
         delay: 50
     });
 }
-Royal_Preloader.config({
-    onComplete: function () {
-        triggerReveals();
-    }
-});
+
 function triggerReveals() {
     sr.reveal('.bottomReveal', {
         origin: 'bottom'
@@ -154,6 +102,8 @@ function triggerReveals() {
         scale: 0.6
     });
 }
+
+$(document).ready(triggerReveals);
 
 /* ---- rotater text ---- */
 var current = 1; 
