@@ -40,7 +40,36 @@ class Reservations {
             .then(() => this.client.query("SELECT * FROM rsvp.view_reservationdetail WHERE reservation_id = $1", [reservationId]))
             .then(result => {
                 this.client.end();
-                return result.rows;
+                let rsvps = [];
+
+                for (let r of result.rows) {
+                    r.detail_html = `
+        <h4 style="color: #19254d;" >
+            ${r.display_name}
+        </h4>
+
+        <div class="form-group">
+            <div class="form-control" style="border: 0px">
+        <label for="attendance-${r.guest_id}">Attending?</label>        
+        <select class="custom-select rsvp-selection-attending" style="margin-left: 15px" placeholder="Attendance" id="attendance-${r.guest_id}">            
+            <option value="2" ${r.gueststatus_id === 2 ? "selected" : ""}>Attending</option>
+            <option value="3" ${r.gueststatus_id === 3 ? "selected" : ""}>Regrets</option>
+        </select>
+        </div>
+        <div class="form-control" style="border: 0px">
+        <label for="food-${r.guest_id}">Food Choice?</label>
+        <select class="custom-select rsvp-food-selection" style="margin-left: 5px" id="food-${r.guest_id}" required>
+            <option value="1" ${r.foodchoice_id === 1 ? "selected" : ""}>Fish</option>
+            <option value="2" ${r.foodchoice_id === 2 ? "selceted" : ""}>Filet</option>
+            <option value="3" ${r.foodchoice_id === 3 ? "selected" : ""}>Chicken</option>            
+        </select>
+        </div>
+        </div>
+`;
+                    rsvps.push(r);
+                }
+
+                return rsvps;
             });
     }
 

@@ -123,6 +123,14 @@ $(".rsvp-previous").click(function() {
         });
 });
 
+
+$("#rsvp-form").bind('keypress', function(e) {
+    if (e.keyCode === 13 ) {
+        $(".rsvp-next").click();
+        return false;
+    }
+});
+
 /* ---- contact form ---- */
 
 

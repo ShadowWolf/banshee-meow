@@ -28,26 +28,52 @@ function validateName() {
         });
 }
 
+function hideRsvpLoader() {
+    $("#rsvp-loading-screen").hide();
+}
+
 function findRsvpDetails() {
     if (!reservationId) {
+        hideRsvpLoader();
         $("#rsvp-failed").show();
         throw "Missing reservation id";
     }
 
     console.log(`loading reservation ${reservationId}`);
 
-    var resPromise = $.get(`/api/rsvp/${reservationId}`)
-        .then(function(result) {
-            console.log(result);
-            reservationDetails = result;
-        });
+    var resPromise;
 
-    var foodPromise = $.get('/api/food');
+    if (reservationDetails && reservationDetails[0].reservation_id === reservationId) {
+        resPromise = $.when(reservationDetails);
+    } else {
+        $(".rsvp-data").remove();
+        resPromise = $.get(`/api/rsvp/${reservationId}`)
+            .then(function(result) {
+                console.log(result);
+                reservationDetails = result;
+                return result;
+            })
+            .then(function(test) {
+                console.log(test);
+                hideRsvpLoader();
+                $.each(reservationDetails, function (_, result) {
+                    $("#rsvp-reservation-details").append("<div class='rsvp-data'>" + result.detail_html + "</div>");
+                    $(".rsvp-selection-attending").addClass()
+                });
+                $("#rsvp-reservation-details").show();
+                wireBootstrapEvents();
+            });
+    }
 
-    $.when(resPromise, foodPromise)
-        .then(function(allDone) {
-            console.log("ALL DONE");
-        });
+    return resPromise;
+}
+
+function wireBootstrapEvents() {
+    // $(".rsvp-selection-attending").change(function() {
+    //     //     if (this.options[this.selectedIndex].text === "Regrets") {
+    //     //         $("").prop("disabled", true);
+    //     //     }
+    //     // });
 }
 
 function submitForm() {

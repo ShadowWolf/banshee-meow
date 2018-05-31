@@ -1317,3 +1317,7 @@ footer {
     background: #a6d8bd;
     color: #19254d;
 }
+
+#rsvp-selection-attending {
+    margin-left: 15px
+}
