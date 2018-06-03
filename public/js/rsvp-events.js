@@ -10,15 +10,17 @@ function validateName() {
         .then(function (data) {
             let message;
 
-            if (data.hasOwnProperty('reservation_id')) {
-                reservationId = data.reservation_id;
-                Cookies.set("rsvpName", guestName);
-                Cookies.set("reservationId", reservationId);
-            } else {
+            if (!data.hasOwnProperty('reservation_id') || !data.hasOwnProperty('full_name')) {
                 message = "There was a problem loading or finding your reservation. Please contact us and we'll help you out!";
+                $("#reservation-name-messages").text(message);
             }
 
-            $("#reservation-name-messages").text(message);
+            reservationId = data.reservation_id;
+            guestName = data.full_name;
+            Cookies.set("reservationId", data.reservation_id);
+            Cookies.set("rsvpName", data.full_name);
+
+            $("#reservation-name-messages").text("");
         }, function(fail) {
             if (fail.status === 401) {
                 $("#reservation-name-messages").text("Please use your full first and last name");
@@ -50,7 +52,9 @@ function findRsvpDetails() {
         resPromise = $.get(`/api/rsvp/${reservationId}`)
             .then(function(result) {
                 console.log(result);
+                Cookies.set("reservationId", result.display_name);
                 reservationDetails = result;
+
                 return result;
             })
             .then(function(test) {
@@ -77,17 +81,38 @@ function wireBootstrapEvents() {
 }
 
 function submitForm() {
-    $.post("api/rsvp", {
-        data: {
+    var reservationData = [];
 
-        }
+    reservationDetails.forEach(function(detail, index) {
+        var guestId = $(".rsvp-data")[index].children[0].attributes["guest-id"].value;
+
+        var attendanceId = $("#attendance-" + guestId)[0].value;
+        var foodId = $("#food-" + guestId)[0].value;
+
+        reservationData.push({
+            guestId: guestId,
+            attendanceId: attendanceId,
+            foodId: foodId
+        });
     });
 
-    $.ajax({
-        type: 'POST',
-        url: 'api/rsvp',
-
+    console.log(reservationData);
+    return $.ajax('/api/rsvp', {
+        method: 'POST',
+        dataType: 'json',
+        contentType: "application/json",
+        data: JSON.stringify({
+            data: reservationData
+        })
     })
+        .done(function(result) {
+            $("#rsvp-final").append(result.message);
+        })
+        .fail(function(err) {
+            console.log("Error " + JSON.stringify(err));
+
+        });
+
     // Initiate Variables With Form Content
 
     //alert('El Wompo');
