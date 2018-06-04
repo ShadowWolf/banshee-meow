@@ -5,17 +5,12 @@ var previousPage;
 var lastPage;
 var firstPage;
 var left;
-var opacity;
-var scale;
 var animating;
 var guestName;
 var reservationId;
 var reservationDetails;
 
 $(document).ready(function() {
-    $("#rsvp-reservation-details").hide();
-    $("#rsvp-failed").hide();
-
 });
 
 $("#rsvp-modal").on('show.bs.modal', function(e) {
@@ -25,14 +20,26 @@ $("#rsvp-modal").on('show.bs.modal', function(e) {
     lastPage = $(".rsvp-last-page");
     firstPage = $(".rsvp-first-page");
 
+    if (currentPage) {
+        currentPage.hide();
+    }
+
     previousPage = null;
     currentPage = firstPage;
     nextPage = currentPage.next();
 
     guestName = Cookies.get("rsvpName");
-    $("#name").val(guestName);
+    if (guestName) {
+        console.log("Saved guest: " + guestName);
+        $("#name").val(guestName);
+    }
+
     reservationId = Cookies.get("reservationId");
 
+    currentPage.fadeIn({
+        duration: 400,
+        easing: 'easeInSine'
+    });
     setNavbarPage();
 });
 
@@ -59,28 +66,37 @@ function setNavbarPage() {
 }
 
 function runFunction(selector, attributeName, self) {
-    var func = selector.attr(attributeName);
-    if (func &&
-        window[func] &&
-        typeof(window[func]) === "function") {
+    if (hasFunction(selector, attributeName)) {
+        var func = selector.attr(attributeName);
         return window[func].bind(self)();
     } else {
         return $.when();
     }
 }
 
+function hasFunction(selector, attributeName) {
+    var func = selector.attr(attributeName);
+    return func &&
+        window[func] &&
+        typeof(window[func]) === "function";
+}
+
 $(".rsvp-next").click(function() {
     if (animating) return false;
     animating = true;
 
-    var validationPromise = runFunction(currentPage, "onValidate", this);
+    var promise;
 
-    validationPromise
-        .then(
-        function () {
-            if (currentPage.is(lastPage)) {
-                submitForm();
-            } else {
+    if (hasFunction(currentPage, "onValidate")) {
+        promise = runFunction(currentPage, "onValidate", this);
+    } else if (hasFunction(currentPage, "onNext")) {
+        promise = runFunction(currentPage, "onNext", this);
+    } else {
+        promise = $.when();
+    }
+
+    promise
+        .then(function () {
                 currentPage.fadeOut(400,
                     function () {
                         nextPage.fadeIn({
@@ -96,7 +112,6 @@ $(".rsvp-next").click(function() {
                             }
                         });
                     });
-            }
         },
         function() {
             animating = false;
@@ -121,6 +136,21 @@ $(".rsvp-previous").click(function() {
                 }
             })
         });
+});
+
+$(".rsvp-submit").click(function() {
+    if (animating) return false;
+    animating = true;
+
+    submitForm();
+});
+
+
+$("#rsvp-form").bind('keypress', function(e) {
+    if (e.keyCode === 13 ) {
+        $(".rsvp-next").click();
+        return false;
+    }
 });
 
 /* ---- contact form ---- */

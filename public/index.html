@@ -54,7 +54,7 @@
 							<li><a href="#directions" data-id="directions" class="scroll-link">Directions</a></li>
                             <li><a href="#accommodations" data-id="accommodations" class="scroll-link">Accommodations</a></li>
                             <li><a href="#gifts" data-id="gifts" class="scroll-link">Registry</a></li>
-							<li class="nav-btn"><input disabled="disabled" type="button" data-toggle="modal" data-target="#rsvp-modal" class="btn btn-primary btn-lg" value="RSVP" /></li>
+							<li class="nav-btn"><input type="button" data-toggle="modal" data-target="#rsvp-modal" class="btn btn-primary btn-lg" value="RSVP" /></li>
 						</ul>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.row -->
@@ -63,17 +63,13 @@
 		<!-- End Navigation -->
 
 		<!-- Begin Bryan & Melissa RSVP Form -->
-		<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog">
+		<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="modal-body">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span class="ion-ios-close-empty"/>
 						</button>
-						<span class="pe-7s-anchor services-icon-2"/>
-						<h4 class="modal-title">RSVP To Bryan &amp; Melissa's Wedding</h4>
-					</div>
-					<div class="modal-body">
 						<div class="row">
 							<div class="col-md-10 col-md-offset-1">
 								<form id="rsvp-form">
@@ -93,28 +89,31 @@
 											</div>
 										</div>
 									</fieldset>
-									<fieldset id="rsvp-reservation" onActivate="findRsvpDetails">
+									<fieldset id="rsvp-reservation" onActivate="findRsvpDetails" onNext="submitForm">
 										<div id="rsvp-loading-screen">
 											<h2 class="modal-header">Just a moment</h2>
 											<p class="mb20">Locating your reservation!</p>
 										</div>
-										<div id="rsvp-failed">
+										<div id="rsvp-failed" hidden>
 											<h2 class="modal-header">Oh no!</h2>
-											<p class="mb20">There was a problem loading or finding your reservation. Please contact us and we'll help you out!</p>
+											<p class="mb20">There was a problem loading or finding your reservation.
+												Please call or e-mail us at <a href="mailto:wedding@bryanmelissa.com">wedding@bryanmelissa.com</a>!</p>
 										</div>
-										<div id="rsvp-reservation-details">
-
+										<div id="rsvp-submit-failed" hidden>
+											<h2 class="modal-header">Oh no!</h2>
+											<p class="mb20">There was an issue completing your reservation.
+												Please call or e-mail us at <a href="mailto:wedding@bryanmelissa.com">wedding@bryanmelissa.com</a></p>
 										</div>
-
-
+										<div id="rsvp-reservation-details" hidden>
+										</div>
 									</fieldset>
 									<fieldset id="rsvp-final" class="rsvp-last-page">
-										<h2 class="modal-header">Something something something dark side</h2>
+										<h2 class="modal-header">Thank you for letting us know!</h2>
 									</fieldset>
-									<div class="col-md-12">
-										<input type="button" id="previous-button" class="rsvp-previous btn btn-primary btn-block btn-lg" value="Back"/>
-										<input type="button" id="next-button" class="rsvp-next btn btn-primary btn-block btn-lg" value="Next"/>
-										<input type="submit" id="submit-button" class="rsvp-submit btn btn-primary btn-block btn-lg" value="Done"/>
+									<div class="btn-group-lg" role="group" aria-label="Action Buttons">
+										<input type="button" id="previous-button" class="rsvp-previous btn btn-primary" value="Back"/>
+										<input type="button" id="next-button" class="rsvp-next btn btn-primary" value="Next"/>
+										<input type="submit" id="submit-button" class="rsvp-submit btn btn-primary" value="Done"/>
 									</div>
 								</form>
 							</div>
@@ -125,97 +124,8 @@
 		</div>
 		<!-- End Bryan & Melissa RSVP Form -->
 
-		<!-- Begin RSVP Form -->
-		<!--<div class="modal fade" id="rsvp-modal" tabindex="-1" role="dialog">-->
-		    <!--<div class="modal-dialog">-->
-		        <!--<div class="modal-content">-->
-		            <!--<div class="modal-header">-->
-		                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ion-ios-close-empty"></span>-->
-		                <!--</button>-->
-		                <!--<span class="pe-7s-anchor services-icon-2"></span>-->
-		                <!--<h4 class="modal-title">RSVP</h4>-->
-		            <!--</div>-->
-		            <!--<div class="modal-body">-->
-		            	<!--<p class="mb20">Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>-->
-						<!--<form data-toggle="validator" id="contactForm" name="contactForm">-->
-							<!--<div class="row">-->
-								<!--<div class="col-sm-6">-->
-									<!--<div class="form-group">-->
-										<!--<label for="name">Name *</label>-->
-										<!--<div class="controls">-->
-											<!--<input class="form-control" data-error="This section is required." id="name" placeholder="Your full name" required="" type="text">-->
-											<!--<div class="help-block with-errors"></div>-->
-										<!--</div>-->
-									<!--</div>-->
-								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
-								<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
-									<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-										<!--&lt;!&ndash;<label for="name">Email *</label>&ndash;&gt;-->
-										<!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
-											<!--&lt;!&ndash;<input class="email form-control" data-error="This section is required." id="email" placeholder="Enter your email" required="" type="email">&ndash;&gt;-->
-											<!--&lt;!&ndash;<div class="help-block with-errors"></div>&ndash;&gt;-->
-										<!--&lt;!&ndash;</div>&ndash;&gt;-->
-									<!--&lt;!&ndash;</div>&ndash;&gt;-->
-								<!--&lt;!&ndash;</div>&lt;!&ndash; /.column &ndash;&gt;&ndash;&gt;-->
-							<!--&lt;!&ndash;</div>&lt;!&ndash; /.row &ndash;&gt;&ndash;&gt;-->
-							<!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
-								<!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
-									<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-										<!--&lt;!&ndash;<label for="name">Guests *</label>&ndash;&gt;-->
-										<!--&lt;!&ndash;<div class="controls">&ndash;&gt;-->
-											<!--&lt;!&ndash;<input class="form-control" data-error="This section is required."&ndash;&gt;-->
-											<!--&lt;!&ndash;id="msg_subject" placeholder="Total guests with names" required="" type="text">&ndash;&gt;-->
-											<!--&lt;!&ndash;<div class="help-block with-errors"></div>&ndash;&gt;-->
-										<!--&lt;!&ndash;</div>&ndash;&gt;-->
-									<!--&lt;!&ndash;</div>&ndash;&gt;-->
-								<!--&lt;!&ndash;</div>&lt;!&ndash; /.column &ndash;&gt;&ndash;&gt;-->
-							<!--&lt;!&ndash;</div>&lt;!&ndash; /.row &ndash;&gt;&ndash;&gt;-->
-							<!--<div class="row">-->
-								<!--<div class="col-sm-12">-->
-									<!--<div class="form-group mb10">-->
-										<!--<label for="name">Message *</label>-->
-										<!--<div class="controls">-->
-											<!--&lt;!&ndash;<textarea class="form-control" data-error="This section is required." id="message" placeholder="Any extra information" required="" rows="5"></textarea>&ndash;&gt;-->
-											<!--<div class="help-block with-errors"></div>-->
-										<!--</div>-->
-									<!--</div>-->
-								<!--</div>-->
-							<!--</div>-->
-							<!--<div class="row">-->
-								<!--<div class="col-sm-12 mb20">-->
-									<!--<div id="msgSubmit" class="h4 hidden no-margin-bottom"></div> -->
-								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
-								<!--<div class="col-sm-12 text-right">-->
-									<!--<button type="submit" id="to-page-2" data-target="#rsvp-modal" class="btn btn-primary btn-block btn-lg">To Page 2</button>-->
-									<!--&lt;!&ndash;<button type="submit" id="submit" class="btn btn-primary btn-block btn-lg">Send</button>&ndash;&gt;-->
-								<!--</div>&lt;!&ndash; /.column &ndash;&gt;-->
-							<!--</div>&lt;!&ndash; /.row &ndash;&gt;-->
-						<!--</form>&lt;!&ndash; /.form &ndash;&gt;-->
-		            <!--</div>-->
-		        <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-		    <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
-		<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
-		<!-- End RSVP Form -->
-
 	</header>
 	<!-- End Header -->
-
-    <!--<div id="announcement" class="">-->
-        <!--<div class="center-vertically-holder">-->
-            <!--<div class="center-vertically">-->
-                <!--<h1 class="header-title color-link">-->
-
-                <!--</h1>-->
-                <!--<span class="section-divider section-divider-center section-divider-transparent mt20 mb20"></span>-->
-                <!--<p class="mb20">On August 18th, 2018 in St Paul, Minnesota</p>-->
-                <!--<button class="btn btn-lg btn-primary" disabled="disabled" data-toggle="modal" data-target="#rsvp-modal">RSVP Here Later</button>-->
-            <!--</div>-->
-        <!--</div>-->
-
-        <!--<div class="scroll-down hidden-xs mb30">-->
-            <!--<a href="#story" data-id="story" class="btn scroll-link"><span class="ion-ios-arrow-down scroll-indicator"></span></a>-->
-        <!--</div>-->
-    <!--</div>-->
 
 	<!-- Begin Slider -->
 	<div id="slider" class="carousel slide" data-ride="carousel">
@@ -674,7 +584,7 @@
 
 			<div class="row">
 				<!-- Item 1 -->
-				<div class="col-sm-6 col-md-3 item">
+				<div class="col-sm-6 col-md-2 col-md-offset-2 item">
 					<div class="circle-hold">
                         <i class="ion-ios-paw-outline"></i>
                     </div>
@@ -683,30 +593,30 @@
 				</div><!-- /.column -->
 
 				<!-- Item 2 -->
-				<div class="col-sm-6 col-md-3 item mt30-xs">
+				<div class="col-sm-6 col-md-2 item mt30-xs">
 					<div class="circle-hold">
                         <i class="ion-ios-americanfootball-outline"></i>
                     </div>
                     <h2 class="h1 timer mb5" data-from="1" data-to="239874" data-refresh-interval="20">1</h2>
-                    <p class="no-margin"><small class="text-white">Arguments over which team is better</small></p>
+                    <p class="no-margin"><small class="text-white">Arguments Over Which Team is Better</small></p>
 				</div><!-- /.column -->
 
 				<!-- Item 3 -->
-				<div class="col-sm-6 col-md-3 item mt30-xs mt30-sm">
+				<div class="col-sm-6 col-md-2 item mt30-xs mt30-sm">
 					<div class="circle-hold">
                         <i class="ion-pie-graph"></i>
                     </div>
                     <h2 class="h1 timer mb5" data-from="1" data-to="934" data-refresh-interval="20">1</h2>
-                    <p class="no-margin"><small class="text-white">Corporate Buzzwords used</small></p>
+                    <p class="no-margin"><small class="text-white">Corporate Buzzwords Used</small></p>
 				</div><!-- /.column -->
 
 				<!-- Item 4 -->
-				<div class="col-sm-6 col-md-3 item mt30-xs mt30-sm">
+				<div class="col-sm-6 col-md-2 item">
 					<div class="circle-hold">
-                        <i class="ion-ribbon-a"></i>
-                    </div>
-                    <h2 class="h1 timer mb5" data-from="1" data-to="16" data-refresh-interval="20">1</h2>
-                    <p class="no-margin"><small class="text-white">Toys slain by banshee</small></p>
+						<i class="ion-ios-home"></i>
+					</div>
+					<h2 class="h1 timer mb5" data-from="0" data-to="1" data-refresh-interval="20">1</h2>
+					<p class="no-margin"><small class="text-white">Homes Officially Reserved</small></p>
 				</div><!-- /.column -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
