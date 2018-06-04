@@ -74,11 +74,7 @@ function findRsvpDetails() {
 }
 
 function wireBootstrapEvents() {
-    // $(".rsvp-selection-attending").change(function() {
-    //     //     if (this.options[this.selectedIndex].text === "Regrets") {
-    //     //         $("").prop("disabled", true);
-    //     //     }
-    //     // });
+
 }
 
 function submitForm() {
@@ -113,22 +109,4 @@ function submitForm() {
             console.log("Error " + JSON.stringify(err));
 
         });
-
-    // Initiate Variables With Form Content
-
-    //alert('El Wompo');
-    // $.ajax({
-    //     type: "POST",
-    //     url: "php/contact.php",
-    //     data: "name=" + name + "&email=" + email + "&msg_subject=" +
-    //         msg_subject + "&message=" + message,
-    //     success: function(text) {
-    //         if (text == "success") {
-    //             formSuccess();
-    //         } else {
-    //             formError();
-    //             submitMSG(false, text);
-    //         }
-    //     }
-    // });
 }
