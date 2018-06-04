@@ -38,8 +38,10 @@ function findRsvpDetails() {
     if (!reservationId) {
         hideRsvpLoader();
         $("#rsvp-failed").show();
-        throw "Missing reservation id";
+        throw new Error("Missing reservation id");
     }
+
+    $("#rsvp-failed").hide();
 
     console.log(`loading reservation ${reservationId}`);
 
@@ -52,7 +54,6 @@ function findRsvpDetails() {
         resPromise = $.get(`/api/rsvp/${reservationId}`)
             .then(function(result) {
                 console.log(result);
-                Cookies.set("reservationId", result.display_name);
                 reservationDetails = result;
 
                 return result;

@@ -143,7 +143,7 @@ class Reservations {
             "  reservation_id, " +
             "  wedding_party, " +
             "  invite_count, " +
-            "  reservation_status_id, " +
+            "  status_id, " +
             "  rehersal_dinner, " +
             "  display " +
             "from rsvp.view_reservationstatus where reservation_id = $1", [reservationId])
@@ -161,8 +161,9 @@ class Reservations {
                     text: "Thank you for RSVPing!"
                 });
 
-                if (reservation.reservation_status_id === 2) {
+                if (reservation.status_id === 2) {
                     logger.info(`Completed reservation ${reservation.reservation_id}`);
+
                     if (reservation.wedding_party) {
                         finishSections.push({
                             id: "wedding-party",
@@ -182,7 +183,7 @@ class Reservations {
                         text: "We look forward to seeing you at our wedding!"
                     });
 
-                } else if (reservation.reservation_status_id === 3) {
+                } else if (reservation.status_id === 3) {
                     logger.info(`reservation ${reservation.reservation_id} declined`);
                     finishSections.push({
                         id: "wedding-regrets",
