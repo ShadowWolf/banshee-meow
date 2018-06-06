@@ -1204,6 +1204,7 @@ footer {
     #clock .clock-section { padding:0 7px; }
     #clock span { margin-top:5px; }
     .overlay { padding:0 40px; }
+
 }
 
 @media (min-width: 768px) {
