@@ -56,16 +56,16 @@ class Reservations {
             </h4>
     
             <div class="form-group">
-                <div class="form-control" style="border: 0px">
+                <div class="input-group" style="border: 0px">
             <label for="attendance-${r.guest_id}">Attending?</label>        
-            <select class="custom-select rsvp-selection-attending" style="margin-left: 18px" id="attendance-${r.guest_id}">      
+            <select class="custom-select rsvp-selection-attending" id="attendance-${r.guest_id}">      
                 <option value="2" ${r.gueststatus_id === 2 ? "selected" : ""}>Attending</option>
                 <option value="3" ${r.gueststatus_id === 3 ? "selected" : ""}>Regrets</option>
             </select>
             </div>
-            <div class="form-control" style="border: 0px">
+            <div class="input-group" style="border: 0px">
             <label for="food-${r.guest_id}">Food Choice?</label>
-            <select class="custom-select rsvp-food-selection" style="margin-left: 5px" id="food-${r.guest_id}" required>
+            <select class="custom-select rsvp-food-selection" id="food-${r.guest_id}" required>
                 <option value="1" ${r.foodchoice_id === 1 ? "selected" : ""}>Walleye</option>
                 <option value="2" ${r.foodchoice_id === 2 ? "selected" : ""}>Beef Filet</option>
                 <option value="3" ${r.foodchoice_id === 3 ? "selected" : ""}>Chicken</option>            
