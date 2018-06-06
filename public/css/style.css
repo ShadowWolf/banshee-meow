@@ -1327,3 +1327,13 @@ footer {
 #rsvp-selection-attending {
     margin-left: 15px
 }
+
+@media (min-width: 445px) {
+    .rsvp-selection-attending {
+        margin-left: 20px;
+    }
+
+    .rsvp-food-selection {
+        margin-left: 5px;
+    }
+}
