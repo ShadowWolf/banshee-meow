@@ -3,11 +3,11 @@ const express = require('express', '4.16.2');
 const compression = require('compression');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const app = express();
 const logger = require('heroku-logger');
 
 const jsonParser = bodyParser.json();
 
+const app = express();
 app.use(express.static('public', {maxAge: '10 days'}));
 app.use(compression());
 app.use(jsonParser);
@@ -15,7 +15,7 @@ app.use(cookieParser());
 
 const portNumber = process.env.PORT || 1500;
 
-app.listen(portNumber, () => logger.info('Banshee Meow listening on port ' + portNumber + ' PORT environment variable: ' + process.env.PORT));
+app.listen(portNumber, () => logger.info(`Listening on port ${portNumber} PORT environment variable: ${process.env.PORT}`));
 
 
 app.get('/api/full_rsvp_set', (req, res) => {

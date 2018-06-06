@@ -152,25 +152,3 @@ $("#rsvp-form").bind('keypress', function(e) {
         return false;
     }
 });
-
-/* ---- contact form ---- */
-
-
-function formSuccess() {
-    $("#rsvp-form")[0].reset();
-    submitMSG(true, "Message Submitted!");
-}
-
-function formError() {
-    $("#rsvp-form").removeClass().addClass('shake animated').one(
-        'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend',
-        function() {
-            $(this).removeClass();
-        });
-}
-
-function submitMSG(valid, msg) {
-    var msgClasses = valid ? "h4 text-success" : "h4 text-danger";
-
-    $("#msgSubmit").removeClass().addClass(msgClasses).text(msg);
-}
