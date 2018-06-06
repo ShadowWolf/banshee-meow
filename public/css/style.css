@@ -1045,6 +1045,12 @@ ul.list-arrow-2-color li:before {
     color: #ecbf87;
 }
 
+ul.unmarked-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0
+}
+
 /* =Progress Bars
 -------------------------------------------------------------- */
 .progress {
