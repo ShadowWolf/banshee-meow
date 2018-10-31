@@ -1,0 +1,3 @@
+function buildGallery() {
+    $("#gallery-element")
+}

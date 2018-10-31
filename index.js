@@ -4,6 +4,7 @@ const compression = require('compression');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('heroku-logger');
+const imageGallery = require('./server/imagegallery');
 
 const jsonParser = bodyParser.json();
 
@@ -12,11 +13,17 @@ app.use(express.static('public', {maxAge: '10 days'}));
 app.use(compression());
 app.use(jsonParser);
 app.use(cookieParser());
+app.use('/spaceballs', express.static('spaceballs', { maxAge: '10 days'}));
 
 const portNumber = process.env.PORT || 1500;
 
 app.listen(portNumber, () => logger.info(`Listening on port ${portNumber} PORT environment variable: ${process.env.PORT}`));
 
+app.get('/api/spaceballs/images', (req, res) => {
+    const gallery = new imageGallery('spaceballs');
+    const images = gallery.getImages();
+    return res.send(images);
+});
 
 app.get('/api/full_rsvp_set', (req, res) => {
     const s = new rsvp();
