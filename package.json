@@ -1,6 +1,6 @@
 {
   "name": "banshee_meow",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "RSVP Site for Wolf Wedding",
   "main": "index.js",
   "repository": "https://github.com/ShadowWolf/banshee-meow.git",
@@ -20,6 +20,6 @@
     "pg": "^7.4.3"
   },
   "engines": {
-    "node": "9.7.1"
+    "node": "10.16.3"
   }
 }
